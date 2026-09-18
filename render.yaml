@@ -1,13 +1,16 @@
 services:
   - type: web
     name: n8n-free-service
-    env: docker
+    # Corrected: runtime must be set to 'image' for pre-built Docker containers
+    runtime: image
     plan: free
-    # Uses the official docker image from n8n
-    imageRepo: docker.n8n.io/n8nio/n8n
-    # Sets the port that n8n operates on internally
-    port: 5678
+    # Corrected: property name is 'image' instead of 'imageRepo'
+    image: docker.n8n.io/n8nio/n8n:latest
     envVars:
+      # Corrected: Port mapping for Render must be specified as an envVar
+      - key: PORT
+        value: "5678"
+
       # Database Configuration (Supabase)
       - key: DB_TYPE
         value: postgresdb
@@ -24,10 +27,10 @@ services:
 
       # n8n General Settings
       - key: N8N_HOST
-        sync: false # Set this to your generated format: name.onrender.com
+        sync: false 
       - key: WEBHOOK_URL
-        sync: false # Set this to: https://onrender.com
+        sync: false 
       
-      # Encryption Key for your credentials inside n8n
+      # Encryption Key
       - key: N8N_ENCRYPTION_KEY
         generateValue: true
