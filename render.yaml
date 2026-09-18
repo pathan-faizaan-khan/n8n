@@ -1,13 +1,12 @@
 services:
   - type: web
     name: n8n-free-service
-    # Corrected: runtime must be set to 'image' for pre-built Docker containers
     runtime: image
     plan: free
-    # Corrected: property name is 'image' instead of 'imageRepo'
-    image: docker.n8n.io/n8nio/n8n:latest
+    # Corrected Block: 'image' must be structured as an object map containing a 'url' key
+    image:
+      url: docker.n8n.io/n8nio/n8n:latest
     envVars:
-      # Corrected: Port mapping for Render must be specified as an envVar
       - key: PORT
         value: "5678"
 
