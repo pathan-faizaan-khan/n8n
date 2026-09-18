@@ -3,9 +3,9 @@ services:
     name: n8n-free-service
     runtime: image
     plan: free
-    # Corrected Block: 'image' must be structured as an object map containing a 'url' key
     image:
-      url: docker.n8n.io/n8nio/n8n:latest
+      # Corrected URL format pointing directly to Docker Hub
+      url: docker.io/n8nio/n8n:latest
     envVars:
       - key: PORT
         value: "5678"
